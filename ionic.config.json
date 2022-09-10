@@ -1,0 +1,7 @@
+{
+  "name": "cakeApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
