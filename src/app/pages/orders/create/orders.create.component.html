@@ -1,0 +1,299 @@
+<ion-header   [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+  <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{'orders' | translate}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openHelp(true)" fill="solid" color="light">
+        {{'help' | translate}}
+        <ion-icon slot="end" name="help-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{'help' | translate}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="openHelp(false)">Ok</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p>
+         Utilice esta opción para crear los ingredientes que utiliza para realizar sus productos, posteriormebte estos seran utilizados para temas de inventario y rebajas de inventario en caso de que aplique al facturar algun servicio.
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-modal [isOpen]="isServiceOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{'detail' | translate}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="viewService(false)">Ok</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+      <ion-card *ngFor="let item of order.detail;let index=index">
+        <ion-item>
+         
+          <ion-label >{{item.totalQty}} {{item.service.name}}</ion-label>
+       <ion-buttons (click)="removeDetail(index,item)"><ion-icon name="trash"></ion-icon></ion-buttons>
+        </ion-item>
+   
+      </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+ 
+ 
+
+<app-logo></app-logo>
+    <ion-item>
+      <ion-checkbox slot="start" [(ngModel)]="exit" [indeterminate]="true"></ion-checkbox>
+      <ion-label >{{'exitToFinish' | translate}}</ion-label>
+    </ion-item>
+    <ion-item-divider  color="tertiary">
+   
+        {{'client' | translate}}
+      
+    </ion-item-divider>
+    <ion-item>
+      <ion-label position="stacked">{{'client' | translate}}:</ion-label>
+      <ionic-selectable 
+        [(ngModel)]="clientObj"
+        [items]="clients"
+        itemTextField="name"
+        [canSearch]="true"
+        (onChange)="clientChange($event)">
+      </ionic-selectable>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{'phone' | translate}}:</ion-label>
+      <ion-input  [disabled]="true " [(ngModel)]="clientObj.phone"></ion-input>
+     </ion-item>
+     <ion-item>
+      <ion-label position="stacked">{{'address' | translate}}:</ion-label>
+      <ion-input [disabled]="true " [(ngModel)]="clientObj.address"></ion-input>
+     </ion-item>
+     <ion-item>
+ 
+    </ion-item>
+  
+     <ion-item-divider  color="tertiary">
+        {{'orderData' | translate}}
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>{{'deliveryDate' | translate}}:</ion-label>
+      <ion-datetime [(ngModel)]="order.deliveryDate" locale="es-ES"></ion-datetime>
+      
+       </ion-item
+    >
+    <ion-item>
+      <ion-label *ngIf="id!=0" position="stacked">{{'orderNumber' | translate}}</ion-label>
+      <ion-input readonly [(ngModel)]="order.ordersNumber"></ion-input >
+    </ion-item>
+    <ion-item>
+    <ion-label position="stacked">{{'commentary' | translate}}</ion-label>
+    <ion-textarea [(ngModel)]="order.commentary"  rows="3" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+  </ion-item>
+
+    <ion-item-divider  color="tertiary">
+    
+      {{'payDetail' | translate}}
+  
+  </ion-item-divider>
+    <ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label  >{{'payType' | translate}}:</ion-label>
+          <ion-select [(ngModel)]="payObj.type" interface="action-sheet" placeholder="Select">
+            <ion-select-option *ngFor="let item of payType" [value]="item.value">{{item.value | translate}}</ion-select-option>
+           
+          </ion-select>
+        </ion-item>
+        
+      </ion-list>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{'amount' | translate}}:</ion-label>
+      <ion-input  [(ngModel)]="payObj.amount" type="number"></ion-input> </ion-item
+    >
+    <ion-item>
+      <ion-button color="tertiary" size="default" (click)="pushPayType()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+         </ion-button>
+          
+     </ion-item>
+     <ion-item-sliding *ngFor="let item of order.payDetail;let i = index">
+      <ion-popover trigger="{{i}}" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+             
+              <ion-item [button]="true" (click)="removePayDetail(i)" [detail]="false">{{'remove' | translate}}</ion-item>
+                 
+           
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+      <ion-card id="{{i}}">
+        <ion-item style="color: #6190A2;">
+          <ion-label><b>{{'payType' | translate}}:</b>{{item.payType | translate}}</ion-label>
+        </ion-item>
+      <ion-item style="color: #6190A2;">
+        <ion-label><b>{{'amount' | translate}}:</b>{{item.amount | currency}}</ion-label>
+      </ion-item>
+    </ion-card>
+
+    </ion-item-sliding>
+  <ion-item-divider  color="tertiary">
+    
+      {{'productData' | translate}}
+  
+  </ion-item-divider>
+ 
+    <ion-item>
+      <ion-label>{{'product' | translate}}:</ion-label>
+      <ionic-selectable
+        [(ngModel)]="serviceObj"
+        [items]="services"
+        itemTextField="name"
+        [canSearch]="true"
+        (onChange)="serviceChange($event)">
+      </ionic-selectable>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{'price' | translate}}:</ion-label>
+      <ion-input readonly [(ngModel)]="serviceObj.price" type="number"></ion-input> </ion-item
+    >
+    <ion-item>
+      <ion-label position="stacked">{{'quantity' | translate}}:</ion-label>
+      <ion-input [(ngModel)]="detail.quantity" type="number"></ion-input> </ion-item
+    >
+    <ion-item>
+      <ion-label position="stacked">{{'salesPrice' | translate}}:</ion-label>
+      <ion-input [(ngModel)]="detail.price" type="number"></ion-input> </ion-item
+    >
+ 
+     <ion-item>
+      <ion-button color="tertiary" size="default" (click)="puchDetail()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+         </ion-button>
+          
+     </ion-item>
+   
+     <ion-list>
+           
+      <ion-item-sliding *ngFor="let item of order.detail;let i = index">
+        <ion-popover trigger="{{i}}" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+               
+                <ion-item [button]="true" (click)="removeDetail(i)" [detail]="false">{{'remove' | translate}}</ion-item>
+                   
+             
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+        <ion-card id="{{i}}">
+          <ion-item style="color: #6190A2;">
+            <ion-label><b>{{'quantity' | translate}}:</b>{{item.quantity}}</ion-label>
+          </ion-item>
+        <ion-item style="color: #6190A2;">
+          <ion-label><b>{{'product' | translate}}:</b>{{item.service.name}}</ion-label>
+        </ion-item>
+        <ion-item style="color: #6190A2;">
+          <ion-label>{{'salesPrice' | translate}}:{{item.price | currency}}</ion-label>
+        </ion-item>
+        <ion-item style="color: #6190A2;">
+          <ion-label>{{'discount' | translate}}:{{item.discount | currency}}</ion-label>
+        </ion-item>
+        <ion-item style="color: #6190A2;">
+          <ion-label>{{'total' | translate}}:{{item.total | currency}}</ion-label>
+        </ion-item>
+   
+      </ion-card>
+   
+      </ion-item-sliding>
+      <ion-item-divider  color="primary">
+   
+        {{'totals' | translate}}
+     
+    </ion-item-divider>
+      <ion-item style="color: #6190A2;">
+        <ion-label>{{'totalQty' | translate}}:{{order.totalQty | currency}}</ion-label>
+      </ion-item>
+      <ion-item style="color: #6190A2;">
+        <ion-label>{{'discount' | translate}}:{{order.discount | currency}}</ion-label>
+      </ion-item>
+      <ion-item style="color: #6190A2;">
+        <ion-label>{{'subTotal' | translate}}:{{order.subTotal | currency}}</ion-label>
+      </ion-item>
+      <ion-item style="color: #6190A2;">
+        <ion-label>{{'total' | translate}}:{{order.total | currency}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-item style="color: #6190A2;">
+      <ion-label>{{'amountPaid' | translate}}: {{order.amountPaid | currency}}</ion-label>
+     </ion-item
+    >
+    <ion-item style="color: #6190A2;">
+      <ion-label>{{'pendingAmount' | translate}}: {{order.pendingAmount | currency}}</ion-label>
+     </ion-item
+    >
+</ion-content>
+
+<!-- <ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button   (click)="createNew()" tab="schedule">
+      <ion-icon name="save-outline"></ion-icon>
+    </ion-tab-button>
+        <ion-tab-button (click)="goHome()">
+      <ion-icon name="home"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button (click)="goBack()">
+      <ion-icon name="return-up-back-outline"></ion-icon>
+    </ion-tab-button>
+  
+  </ion-tab-bar>
+</ion-tabs> -->
+<ion-footer  collapse="">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+         <ion-button fill="outline" color="tertiary" expand="full" (click)="addOrUpdate()">
+           <ion-icon  name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+         <ion-button  fill="outline" color="tertiary" expand="full" (click)="goHome()">
+           <ion-icon name="home"></ion-icon>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+         <ion-button fill="outline" color="tertiary" expand="full" (click)="goBack()">
+           <ion-icon name="return-up-back-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+      </ion-row>
+   </ion-grid>
+</ion-toolbar>
+</ion-footer>
+
+<!-- Fade Footer -->

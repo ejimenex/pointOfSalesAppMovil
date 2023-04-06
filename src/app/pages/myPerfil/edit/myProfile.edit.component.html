@@ -1,0 +1,86 @@
+<ion-header [translucent]="">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button> </ion-menu-button>
+      </ion-buttons>
+      <ion-note>Mi Perfil</ion-note>
+      <ion-buttons slot="primary">
+        <ion-button (click)="openHelp(true)" fill="solid" color="light">
+          Ayuda
+          <ion-icon slot="end" name="help-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div>
+      <ion-item lines="full">
+        <ion-label position="floating">First name</ion-label>
+        <ion-input type="text" [(ngModel)]="account.name"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Last name</ion-label>
+        <ion-input type="text" [(ngModel)]="account.lastName"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" readonly  [(ngModel)]="account.userEmail"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Alias</ion-label>
+        <ion-input type="text"  [(ngModel)]="account.alias"></ion-input>
+      </ion-item>
+      <ion-list>
+        <ion-radio-group [(ngModel)]="account.language">
+       
+            <ion-label position="floating">Idioma</ion-label>
+          <ion-item>
+            <ion-label>Español</ion-label>
+            <ion-radio slot="start" value="es"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>English</ion-label>
+            <ion-radio slot="start" value="en"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Portugues</ion-label>
+            <ion-radio slot="start" value="pt"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)='update()' color="primary" expand="block">Edit</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-content>
+    <ion-footer  collapse="">
+      <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+         <ion-col>
+          <ion-button color="light" (click)="update()">
+            <ion-icon  name="save-outline"></ion-icon>
+             </ion-button>
+         </ion-col>
+         <ion-col>
+          <ion-button color="light" (click)="goHome()">
+            <ion-icon name="home"></ion-icon>
+             </ion-button>
+         </ion-col>
+         <ion-col>
+          <ion-button color="light" (click)="goBack()">
+            <ion-icon name="return-up-back-outline"></ion-icon>
+             </ion-button>
+         </ion-col>
+       </ion-row>
+     
+     </ion-grid>
+    </ion-toolbar>
+    </ion-footer>
+  <!-- Fade Footer -->
+  

@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Log In</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content >
+    <!-- <div class="center">
+      <ion-item lines="full">
+        <ion-input  placeholder="Email"  [(ngModel)]="login.userEmail" type="text"></ion-input>
+        <ion-icon name="mail"></ion-icon>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input [(ngModel)]="login.password" placeholder="Password" type="password"></ion-input>
+        <ion-icon name="compass-outline"></ion-icon>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="logon()" color="danger" expand="block">Sign In</ion-button>
+          <a [routerLink]="['/login/changePassword']" class="small-text">Forgot Password?</a>
+        </ion-col>
+      </ion-row>
+    </div> -->
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          
+        </ion-col>
+        <ion-col>
+          <ion-img style="width: 140px; height: 140px;"  src="../../../../assets/icon/infinite.png"></ion-img>
+        </ion-col>
+        <ion-col>
+          
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-input  placeholder="Email"  [(ngModel)]="login.userEmail" type="text"></ion-input>
+            <ion-icon name="mail"></ion-icon>
+          </ion-item>
+        </ion-col>
+       
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-input [(ngModel)]="login.password" placeholder="Password" type="password"></ion-input>
+            <ion-icon name="compass-outline"></ion-icon>
+          </ion-item>
+        </ion-col>
+       
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="logon()" color="danger" expand="block">Sign In</ion-button>
+         
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          
+          <a [routerLink]="['/login/changePassword']" class="small-text">Forgot Password?</a>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          
+          <ion-button (click)="logon()" color="danger" expand="block"><ion-icon name="logo-google"></ion-icon> Google</ion-button>
+        </ion-col>
+        <ion-col>
+          
+          <ion-button (click)="logon()" color="primary" expand="block"><ion-icon name="logo-facebook"></ion-icon> Facebook</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

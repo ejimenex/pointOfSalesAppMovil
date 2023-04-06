@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-menu-button> </ion-menu-button>
+    </ion-buttons>
+    <ion-title> {{'myClients' | translate}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title> {{'blackListClient' | translate}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="danger"  fill="outline"  (click)="openBlackList(false)">Ok</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+         
+          <ion-buttons slot="end">
+            <ion-button color="tertiary"  fill="outline" (click)="setBlackList()">{{'blackListPost' | translate}}</ion-button>
+          </ion-buttons>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{'blackListReason' | translate}}:</ion-label>
+          <ion-textarea [(ngModel)]="client.blackListReason"></ion-textarea>
+          
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-searchbar
+    (ionChange)="filterData($event)"
+    placeholder="Buscar"
+  ></ion-searchbar>
+
+  <ion-list>
+    
+  <app-logo></app-logo>
+
+   
+    <ion-item-sliding *ngFor="let item of clients">
+      <ion-popover trigger="{{item._id}}" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item [button]="true" (click)="edit(item._id)" [detail]="false">{{'edit' | translate}}</ion-item>
+              <ion-item [button]="true" (click)="openBlackList(true,item)" [detail]="false">{{'blackListPost' | translate}}</ion-item>
+              <ion-item [button]="true" (click)="remove(item._id)" [detail]="false">{{'remove' | translate}}</ion-item>
+                 
+           
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+      <ion-card id="{{item._id}}"> 
+      <ion-item style="color: #6190a2">
+        <ion-label>{{ item.name }}</ion-label>
+      </ion-item>
+      <ion-item style="color: #6190a2">
+          <ion-badge color="tertiary">{{item.ordersQuantity}} {{'leyPed' | translate}}</ion-badge>-
+        <ion-badge color="success">{{item.invoiceQuantity}} {{'leyInvoice' | translate}}</ion-badge>
+      </ion-item>
+      
+   
+      </ion-card>
+
+    </ion-item-sliding>
+  </ion-list>
+  <ion-grid fixed>
+  </ion-grid>
+  <!-- <ion-infinite-scroll position="top" threshold="15%" (ionInfinite)="loadData($event,'T')">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll> -->
+  <ion-infinite-scroll threshold="100%" (ionInfinite)="loadData($event,'B')">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer  collapse="fade">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+       
+       <ion-col>
+        <ion-button fill="outline" color="tertiary" expand="full" (click)="goHome()">
+          <ion-icon name="home"></ion-icon>
+        </ion-button>
+       </ion-col>
+       <ion-col>
+        <ion-button
+        color="light"
+        fill="outline" color="tertiary" expand="full" 
+        (click)="createNew()"
+        data-desc="Crear Nuevo"
+      >
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+       </ion-col>
+     
+     </ion-row>
+   
+   </ion-grid>
+</ion-toolbar>
+</ion-footer>

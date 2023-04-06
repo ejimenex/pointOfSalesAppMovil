@@ -1,0 +1,104 @@
+<ion-header [translucent]="">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button> </ion-menu-button>
+      </ion-buttons>
+      <ion-note>{{'myData' | translate}}</ion-note>
+
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+   
+    <ion-header collapse="condense">
+    
+    </ion-header>
+  
+    <div id="container">
+      <ion-item>
+        <ion-checkbox
+          slot="start"
+          [(ngModel)]="exit"
+          [indeterminate]="true"
+        ></ion-checkbox>
+        <ion-label style="color: #600478">{{'exitToFinish' | translate}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'companyName' | translate}}:</ion-label>
+        <ion-input [(ngModel)]="parameter.companyName"></ion-input> </ion-item
+      ><ion-item>
+        <ion-label>{{'companyAddress' | translate}}:</ion-label>
+        <ion-input  type='text' [(ngModel)]="parameter.companyAddress"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'companyPhone' | translate}}:</ion-label>
+        <ion-input maxlength="25"  type='text' [(ngModel)]="parameter.companyPhone"></ion-input
+        >
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>{{'companyEmail' | translate}}:</ion-label>
+        <ion-input [(ngModel)]="parameter.companyEmail"></ion-input>
+       
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>{{'invoicePrefix' | translate}}:</ion-label>
+        <ion-input [(ngModel)]="parameter.invoicePrefix"></ion-input>
+
+       
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'invoiceSecuence' | translate}}:</ion-label>
+        <ion-input readonly [(ngModel)]="parameter.invoiceSecuence"></ion-input>       
+       
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'orderPrefix' | translate}}:</ion-label>
+        <ion-input [(ngModel)]="parameter.orderPrefix"></ion-input>
+
+       
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'orderSecuence' | translate}}:</ion-label>
+        <ion-input readonly [(ngModel)]="parameter.orderSecuence"></ion-input>       
+       
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'currency' | translate}}:</ion-label>
+        <ion-select [(ngModel)]="parameter.currency" interface="action-sheet" placeholder="Select">
+          <ion-select-option *ngFor="let item of currency" [value]="item.value">{{item.label}}</ion-select-option>
+         
+        </ion-select>
+             
+       
+      </ion-item>
+    </div>
+  
+    
+  </ion-content>
+    <ion-footer  collapse="">
+      <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+               <ion-button fill="outline" color="tertiary" expand="full" (click)="addOrUpdate()">
+                 <ion-icon  name="save-outline"></ion-icon>
+                  </ion-button>
+              </ion-col>
+              <ion-col>
+               <ion-button  fill="outline" color="tertiary" expand="full" (click)="goHome()">
+                 <ion-icon name="home"></ion-icon>
+                  </ion-button>
+              </ion-col>
+              <ion-col>
+               <ion-button fill="outline" color="tertiary" expand="full" (click)="goBack()">
+                 <ion-icon name="return-up-back-outline"></ion-icon>
+                  </ion-button>
+              </ion-col>
+            </ion-row>
+         </ion-grid>
+    </ion-toolbar>
+    </ion-footer>
+  <!-- Fade Footer -->
+  

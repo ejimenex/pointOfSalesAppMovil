@@ -13,9 +13,71 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
+<!-- 
+  <div class="nav3">
+ 
+     <a [routerLink] = "['/ingredient']" class="icons"><img alt="Silhouette of mountains" src="../../assets//imgs/ingredient.png" /></a> 
+     <a [routerLink] = "['/services']" class="icons"><img alt="Silhouette of mountains" src="../../assets//imgs/cake2.png" /></a> 
+      <a class="icons"><img alt="Silhouette of mountains" src="../../assets//imgs/client.png" /></a> 
+  
+  </div> -->
+  <ion-grid>
+     <ion-row>
+      <ion-col>
+        <ion-thumbail>
+          <ion-card class="ion-img" slot="start">
+            <a [routerLink] = "['/ingredient']" class="icons"><ion-img alt="Silhouette of mountains" src="../../assets//imgs/ingredient.png"></ion-img></a> 
+            <ion-item><ion-label>{{'ingredient' | translate}}</ion-label></ion-item>
+          </ion-card>
+         </ion-thumbail>
+      </ion-col>
+      <ion-col>
+        <ion-thumbail>
+          <ion-card class="ion-img" slot="start">
+          
+            <a [routerLink] = "['/services']" class="icons"><ion-img alt="Silhouette of mountains" src="../../assets//imgs/cake2.png"></ion-img></a> 
+           <ion-item><ion-label>{{'service' | translate}}</ion-label></ion-item>
+            
+         
+          </ion-card></ion-thumbail>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-thumbail> 
+          <ion-card class="ion-img" slot="start">
+           
+             <a [routerLink] = "['/client']" class="icons"><ion-img alt="Silhouette of mountains" src="../../assets//imgs/client.png"></ion-img></a> 
+             <ion-item><ion-label>{{'client' | translate}}</ion-label></ion-item>
+          </ion-card>
+        </ion-thumbail>
+      </ion-col>
+ 
+      <ion-col>
+        <ion-thumbail> 
+          <ion-card class="ion-img" slot="start">
+           
+             <a [routerLink] = "['/inventoryIngredient']" class="icons"><ion-img alt="Silhouette of mountains" src="../../assets//imgs/inventario.png"></ion-img></a> 
+             <ion-label>{{'inventoryIngredient' | translate}}</ion-label>
+          </ion-card>
+        </ion-thumbail>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-thumbail> 
+          <ion-card class="ion-img" slot="start">
+           
+             <a [routerLink] = "['/orders']" class="icons"><ion-img alt="Silhouette of mountains" src="../../assets//imgs/pedido.png"></ion-img></a> 
+             <ion-item><ion-label>{{'orders' | translate}}</ion-label></ion-item>
+          </ion-card>
+        </ion-thumbail>
+      </ion-col>
+ 
+      <ion-col>
+       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>

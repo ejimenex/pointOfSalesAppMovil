@@ -1,0 +1,106 @@
+<ion-header   [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+    <ion-menu-button>
+        </ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{'ingredient' | translate}}</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="openHelp(true)" fill="solid" color="light">
+          {{'help'| translate}}
+          <ion-icon slot="end" name="help-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+   
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>{{'help' | translate}}</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="openHelp(false)">Ok</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>
+           Utilice esta opción para crear los ingredientes que utiliza para realizar sus productos, posteriormebte estos seran utilizados para temas de inventario y rebajas de inventario en caso de que aplique al facturar algun servicio.
+          </p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Crear Producto</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <div  id="container"> <app-logo></app-logo>
+      <ion-item>
+        <ion-checkbox slot="start" [(ngModel)]="exit" [indeterminate]="true"></ion-checkbox>
+        <ion-label>
+          {{'exitToFinish' | translate}}
+        </ion-label>
+      </ion-item>
+     
+      <ion-item>
+        <ion-label   >{{'rawMaterialName' | translate}}</ion-label>
+        <ion-input [(ngModel)]="ingredient.name"></ion-input> </ion-item
+      ><ion-item>
+        <ion-label  >{{ 'minimalStock' | translate }}</ion-label>
+        <ion-input [(ngModel)]="ingredient.minimalStock" type="number"></ion-input> </ion-item
+      >
+      <ion-list>
+        <ion-item>
+          <ion-label  >{{'usedUoM'| translate}}:</ion-label>
+          <ion-select [(ngModel)]="ingredient.unitOfMeasure" interface="action-sheet" placeholder="Seleccione Unidad">
+            <ion-select-option *ngFor="let item of unitOfMeasures" [value]="item.name">{{item.name}}</ion-select-option>
+           
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-item>
+        <ion-label  >Esto me cuesta:</ion-label>
+        <ion-input [(ngModel)]="ingredient.cost" type="number"></ion-input> </ion-item
+      >
+      <ion-item>
+        <ion-checkbox [(ngModel)]="ingredient.isInventable" slot="start"></ion-checkbox>
+        <ion-label  style="color:#600478">{{'isInventory'|translate}}</ion-label>
+        </ion-item
+      >
+      <ion-item>
+        <ion-label >{{'commentary'|translate}}</ion-label>
+        <ion-textarea [(ngModel)]="ingredient.commentary"></ion-textarea>
+      </ion-item>
+    </div>
+  
+  </ion-content>
+  <ion-footer class="centerdiv" collapse="fade">
+   <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+         <ion-button fill="outline" color="tertiary" expand="full" (click)="addOrUpdate()">
+           <ion-icon  name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+         <ion-button  fill="outline" color="tertiary" expand="full" (click)="goHome()">
+           <ion-icon name="home"></ion-icon>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+         <ion-button fill="outline" color="tertiary" expand="full" (click)="goBack()">
+           <ion-icon name="return-up-back-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+      </ion-row>
+   </ion-grid>
+  </ion-toolbar>
+  </ion-footer>
+  
+  <!-- Fade Footer -->

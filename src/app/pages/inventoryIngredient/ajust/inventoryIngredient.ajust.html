@@ -1,0 +1,83 @@
+<ion-header   [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+    <ion-menu-button>
+        </ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{'inventoryIngredient'|  translate}}</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="openHelp(true)" fill="solid" color="light">
+          {{'help' | translate}}
+          <ion-icon slot="end" name="help-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+   
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+  
+   
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Crear Producto</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <div class="centerdiv">
+      
+      <ion-thumbnail>
+       
+        <img  width="70%" height="70%" alt="Silhouette of mountains" src="../../../../assets/imgs/cake3.gif" />
+      </ion-thumbnail>
+   
+    </div>
+  
+      
+      <ion-item>
+        <ion-label>{{'inventoryName' | translate}}:</ion-label>
+        <ion-input readonly style="color: #61A295;" [(ngModel)]="data.name"></ion-input> </ion-item
+      >
+    <ion-item>
+      <ion-label>{{'quantity'| translate}}:</ion-label>
+      <ion-input [(ngModel)]="data.quantity" type="number"></ion-input> </ion-item
+    >
+      <ion-item>
+        <ion-label>{{'commentary' | translate}}:</ion-label>
+        <ion-textarea style="color: #61A295;" [(ngModel)]="data.commentary"></ion-textarea>
+      
+  </ion-item>
+   
+      <ion-item>
+        <ion-label>{{'stock' | translate}}:</ion-label>
+        <ion-input style="color: #61A295;" [(ngModel)]="data.stock" readonly type="number"></ion-input> </ion-item
+      >
+ 
+  
+  </ion-content>
+  <ion-footer  collapse="">
+    <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+       <ion-col>
+        <ion-button color="light" (click)="addOrUpdate()">
+          <ion-icon  name="save-outline"></ion-icon>
+           </ion-button>
+       </ion-col>
+       <ion-col>
+        <ion-button color="light" (click)="goHome()">
+          <ion-icon name="home"></ion-icon>
+           </ion-button>
+       </ion-col>
+       <ion-col>
+        <ion-button color="light" (click)="goBack()">
+          <ion-icon name="return-up-back-outline"></ion-icon>
+           </ion-button>
+       </ion-col>
+     </ion-row>
+   
+   </ion-grid>
+  </ion-toolbar>
+  </ion-footer>
+  
+  <!-- Fade Footer -->
+  

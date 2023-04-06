@@ -1,0 +1,119 @@
+<ion-header [translucent]="">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button> </ion-menu-button>
+    </ion-buttons>
+    <ion-note>{{'addClient' | translate}}</ion-note>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openHelp(true)" fill="solid" color="light">
+        {{'help' | translate}}
+        <ion-icon slot="end" name="help-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title> {{'help' | translate}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="openHelp(false)">Ok</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p>
+          Utilice esta opción para crear los cliente que utiliza para
+          posteriormente hacer facturas.
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <ion-header collapse="condense">
+  
+  </ion-header>
+
+  <div id="container">
+    <app-logo></app-logo>
+    <ion-item>
+      <ion-checkbox
+        slot="start"
+        [(ngModel)]="exit"
+        [indeterminate]="true"
+      ></ion-checkbox>
+      <ion-label style="color: #600478">{{'exitToFinish' | translate}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'clientName' | translate}}:</ion-label>
+      <ion-input [(ngModel)]="client.name"></ion-input> <ion-icon name="people"></ion-icon></ion-item
+    ><ion-item>
+      <ion-label>{{'phone' | translate}}:</ion-label>
+      <ion-input maxlength="12"  type='tel' pattern="\d*"  [(ngModel)]="client.phone"></ion-input
+      ><ion-icon name="call"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'email' | translate}}:</ion-label>
+      <ion-input maxlength="50"  type='text' [(ngModel)]="client.clientEmail"></ion-input
+      ><ion-icon name="mail"></ion-icon>
+    </ion-item>
+    <ion-item-divider  color="success">
+      <ion-label>
+        {{'othersData' | translate}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>{{'address' | translate}}:</ion-label>
+      <ion-textarea [(ngModel)]="client.address"></ion-textarea>
+      <ion-icon name="home"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'city' | translate}}:</ion-label>
+      <ion-input [(ngModel)]="client.city"></ion-input
+      ><ion-icon name="home"></ion-icon>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-checkbox
+        slot="start"
+        [(ngModel)]="client.notifyWhenInvoice"
+        [indeterminate]="true"
+      ></ion-checkbox>
+      <ion-label style="color: #600478">{{'notifyWhenInvoice' | translate}}</ion-label>
+    </ion-item>
+    <ion-item>
+     
+      <ion-label>{{'commentary' | translate}}:</ion-label>
+      <ion-input [(ngModel)]="client.commentary"></ion-input
+      ><ion-icon name="document-text"></ion-icon>
+    </ion-item>
+  </div>
+
+  
+</ion-content>
+  <ion-footer  collapse="">
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+           <ion-button fill="outline" color="tertiary" expand="full" (click)="addOrUpdate()">
+             <ion-icon  name="save-outline"></ion-icon>
+              </ion-button>
+          </ion-col>
+          <ion-col>
+           <ion-button  fill="outline" color="tertiary" expand="full" (click)="goHome()">
+             <ion-icon name="home"></ion-icon>
+              </ion-button>
+          </ion-col>
+          <ion-col>
+           <ion-button fill="outline" color="tertiary" expand="full" (click)="goBack()">
+             <ion-icon name="return-up-back-outline"></ion-icon>
+              </ion-button>
+          </ion-col>
+        </ion-row>
+     </ion-grid>
+  </ion-toolbar>
+  </ion-footer>
+<!-- Fade Footer -->

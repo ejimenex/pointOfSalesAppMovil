@@ -1,0 +1,95 @@
+<ion-header [translucent]="">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button> </ion-menu-button>
+      </ion-buttons>
+      <ion-note>{{'bills' | translate}}</ion-note>
+
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+   
+    <ion-header collapse="condense">
+    
+    </ion-header>
+  
+    <div id="container">
+      <ion-item>
+        <ion-checkbox
+          slot="start"
+          [(ngModel)]="exit"
+          [indeterminate]="true"
+        ></ion-checkbox>
+        <ion-label style="color: #600478">{{'exitToFinish' | translate}}</ion-label>
+      </ion-item>
+      <ion-item>
+      <ion-label  >{{'provider' | translate}}:</ion-label>
+      <ion-select [(ngModel)]="bill.provider" interface="action-sheet">
+        <ion-select-option *ngFor="let item of providers" [value]="item">{{item.name}}</ion-select-option>
+       
+      </ion-select>
+    </ion-item>
+      <ion-item>
+        <ion-label>{{'date' | translate}}:</ion-label>
+        <ion-input  [(ngModel)]="bill.date" maxlength="10" type="tel" placeholder="2000-01-01" mask="****-**-**"></ion-input><ion-icon name="calendar"></ion-icon></ion-item
+      >
+      <ion-item>
+       
+        <ion-label>{{'concept' | translate}}:</ion-label>
+        <ion-input [(ngModel)]="bill.concept"></ion-input
+        ><ion-icon name="document-text"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'invoiceNumber' | translate}}:</ion-label>
+        <ion-input maxlength="50"  type='text' [(ngModel)]="bill.invoiceNumber"></ion-input
+        ><ion-icon name="cash"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'amount' | translate}}:</ion-label>
+        <ion-input maxlength="12"  type='number'  [(ngModel)]="bill.amount"></ion-input
+        ><ion-icon name="wallet"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'paidAmount' | translate}}:</ion-label>
+        <ion-input maxlength="12"  type='number'  [(ngModel)]="bill.paidAmount"></ion-input
+        ><ion-icon name="wallet"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'pendinAmount' | translate}}:</ion-label>
+        <ion-input maxlength="12" [disabled]="true" type='number'  [(ngModel)]="bill.pendingAmount"></ion-input
+        ><ion-icon name="wallet"></ion-icon>
+      </ion-item>
+  
+      
+  
+     
+    </div>
+  
+    
+  </ion-content>
+    <ion-footer  collapse="">
+      <ion-toolbar>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+             <ion-button fill="outline" color="tertiary" expand="full" (click)="addOrUpdate()">
+               <ion-icon  name="save-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col>
+             <ion-button  fill="outline" color="tertiary" expand="full" (click)="goHome()">
+               <ion-icon name="home"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col>
+             <ion-button fill="outline" color="tertiary" expand="full" (click)="goBack()">
+               <ion-icon name="return-up-back-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+          </ion-row>
+       </ion-grid>
+    </ion-toolbar>
+    </ion-footer>
+  <!-- Fade Footer -->
+  

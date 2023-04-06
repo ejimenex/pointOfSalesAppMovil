@@ -1,0 +1,97 @@
+<ion-header>
+	<ion-toolbar style="background-color: pink;">
+		<ion-buttons slot="secondary">
+      <ion-menu-button>
+      </ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			{{'orders'| translate}}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+    <ion-searchbar     (ionChange)="filterData($event)"
+    placeholder="Buscar"></ion-searchbar>
+    <app-logo></app-logo>
+      <ion-list>
+ 
+        <!-- <ion-infinite-scroll position="top" threshold="15%" (ionInfinite)="loadData($event,'T')">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+          </ion-infinite-scroll-content>
+      </ion-infinite-scroll> -->
+        <ion-item-sliding  *ngFor="let item of orders">
+          <ion-popover trigger="{{item._id}}" [dismissOnSelect]="true">
+            <ng-template>
+              <ion-content>
+                <ion-list>
+                  <ion-item [button]="true" (click)="edit(item._id)" [detail]="false">{{'edit' | translate}}</ion-item>
+                  <ion-item [button]="true" (click)="remove(item._id)" [detail]="false">{{'remove' | translate}}</ion-item>
+                  <ion-item [button]="true" (click)="bill(item._id)" [detail]="false">{{'bill' | translate}}</ion-item>
+                     
+               
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+          <div>
+          <ion-card style="background-color: black;" id="{{item._id}}">
+            <ion-item style="color: #6190A2;">
+              <ion-label><b>{{'orderNumber' | translate}}:</b>{{item.ordersNumber}}</ion-label>
+            </ion-item>
+          <ion-item style="color: #6190A2;">
+            <ion-label><b>{{'clientName' | translate}}:</b>{{item.client.name}}</ion-label>
+          </ion-item>
+          <ion-item style="color: #6190A2;">
+            <ion-label><b>{{'pendingAmount' | translate}}:</b>{{item.pendingAmount | currency}}</ion-label>
+          </ion-item>
+          <ion-item style="color: #6190A2;">
+            <ion-label><b>{{'total' | translate}}:</b>{{item.total | currency}}</ion-label>
+          </ion-item>
+          <ion-item style="color: #6190A2;">
+            <ion-label><b>{{'promiseDate' | translate}}:</b>{{item.deliveryDate | date}}</ion-label>
+          </ion-item>
+        </ion-card>
+      </div>
+        </ion-item-sliding>
+      
+       
+      </ion-list>
+	<ion-grid fixed>
+    
+
+       
+	</ion-grid>
+    <ion-infinite-scroll position="bottom" threshold="15%" (ionInfinite)="loadData($event,'B')">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+   
+</ion-content>
+<ion-footer  collapse="fade">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+       
+       <ion-col>
+        <ion-button fill="outline" color="tertiary" expand="full" (click)="goHome()">
+          <ion-icon name="home"></ion-icon>
+        </ion-button>
+       </ion-col>
+       <ion-col>
+        <ion-button
+        color="light"
+        fill="outline" color="tertiary" expand="full" 
+        (click)="createNew()"
+        data-desc="Crear Nuevo"
+      >
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+       </ion-col>
+     
+     </ion-row>
+   
+   </ion-grid>
+</ion-toolbar>
+</ion-footer>
