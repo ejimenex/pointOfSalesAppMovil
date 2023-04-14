@@ -25,7 +25,7 @@ export class ListProviderComponent implements OnInit {
     } 
   ngOnInit() {
     let user=this.toke.getUserToken();
-   
+   this.providers=[]
    // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
   filterData(event){
@@ -48,7 +48,7 @@ export class ListProviderComponent implements OnInit {
     remove(id){
        this.alert.confirmation(()=>{this.providerService.delete(id).subscribe(response=>{
 
-        this.alert.success('Cliente Removido')
+        this.alert.success('Provider Removido')
         this.refresh()
        })},'Seguro desea eliminar?')
     }

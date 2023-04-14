@@ -27,15 +27,16 @@ login:any={}
 
   }
 logon(){
+  debugger
     this.accountService.login(this.login).subscribe(response=>{
-       this.tokenService.setToken(response['access_token'] as string);
+       this.tokenService.setToken(response['token'] as string);
        const lang=this.token.getUserToken().language
        this.translate.setDefaultLang(lang);
         this.translate.use(lang);
        this.routeService.navigate(['/home']);
 
     },error=>{
-        this.alert.error(typeof(error.error.message)=='string'?error.error.message : error.error.message.join('-'));
+        this.alert.error(error.error);
     })
 }
  

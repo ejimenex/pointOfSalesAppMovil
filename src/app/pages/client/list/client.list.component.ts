@@ -44,7 +44,7 @@ export class ListClientComponent implements OnInit {
     this.client.isBlackList = 'Yes';
     this.alert.confirmation(()=>{
       this.clientService
-      .put(this.client['_id'], this.client)
+      .put(this.client['id'], this.client)
       .subscribe((respon) => {
         this.alert.success(this.translateService.instant('successBlackList'));
         this.ionViewDidEnter()
@@ -63,7 +63,7 @@ export class ListClientComponent implements OnInit {
       .toPromise()
       .then(
         (response) => {
-          this.clients = response['clients'];
+          this.clients = response['data'];
         },
         (error) => {
           this.alert.error(error.error.message);

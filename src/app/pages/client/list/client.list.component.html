@@ -39,25 +39,24 @@
   ></ion-searchbar>
 
   <ion-list>
-    
-  <app-logo></app-logo>
+ 
 
    
     <ion-item-sliding *ngFor="let item of clients">
-      <ion-popover trigger="{{item._id}}" [dismissOnSelect]="true">
+      <ion-popover trigger="{{item.id}}" [dismissOnSelect]="true">
         <ng-template>
           <ion-content>
             <ion-list>
-              <ion-item [button]="true" (click)="edit(item._id)" [detail]="false">{{'edit' | translate}}</ion-item>
+              <ion-item [button]="true" (click)="edit(item.id)" [detail]="false">{{'edit' | translate}}</ion-item>
               <ion-item [button]="true" (click)="openBlackList(true,item)" [detail]="false">{{'blackListPost' | translate}}</ion-item>
-              <ion-item [button]="true" (click)="remove(item._id)" [detail]="false">{{'remove' | translate}}</ion-item>
+              <ion-item [button]="true" (click)="remove(item.id)" [detail]="false">{{'remove' | translate}}</ion-item>
                  
            
             </ion-list>
           </ion-content>
         </ng-template>
       </ion-popover>
-      <ion-card id="{{item._id}}"> 
+      <ion-card id="{{item.id}}"> 
       <ion-item style="color: #6190a2">
         <ion-label>{{ item.name }}</ion-label>
       </ion-item>

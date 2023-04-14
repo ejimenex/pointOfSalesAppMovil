@@ -10,9 +10,8 @@ import { Provider } from '../model/providers';
 export class ProviderService extends BaseService<Provider, string> {
 
   constructor(_httpClient: HttpClient,tokenService:TokenService) {
-    super(_httpClient, environment.url + endpoints.provider,tokenService);
+    super(_httpClient, environment.urlApi + endpoints.provider,tokenService);
   }
 getPaged(pageNumber,filter){
-  const user=this.tokenService.getUserToken().email;
- return this._httpClient.get(environment.url+endpoints.provider+`/GetPaginated/Data?pageNumber=${pageNumber}&filter=${filter}&email=${user}`,this.httpOptions)}
+ return this._httpClient.get(environment.urlApi+endpoints.provider+`/GetPaged?page=${pageNumber}&filter=${filter}`,this.httpOptions)}
 }

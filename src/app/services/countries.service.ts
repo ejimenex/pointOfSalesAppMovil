@@ -7,25 +7,15 @@ import { AccountModel } from '../model/account.model';
 import { TokenService } from './token.service';
 
 @Injectable({ providedIn: 'root' })
-export class AccountService extends BaseService<AccountModel, string> {
+export class CountriesService extends BaseService<any, string> {
   constructor(_httpClient: HttpClient, tokenService: TokenService) {
     super(_httpClient, environment.urlApi + endpoints.account, tokenService);
   }
-  login = (data) =>
-    this._httpClient.post(
-      environment.urlApi  + `Authentication/Login`,
-      data
-    );
-  getOneEmail = (email) =>
+
+  getCountries = () =>
     this._httpClient.get(
-      environment.url + endpoints.account + `/GetOne?email=${email}`,
-      this.httpOptions
-    );
-  getOne = (filter) =>
-    this._httpClient.get(
-      environment.url +
-        endpoints.account +
-        `/GetOne?email=${filter.email}&password=${filter.password}`,
+      environment.urlApi +
+        `AllowredCountry`,
       this.httpOptions
     );
 }

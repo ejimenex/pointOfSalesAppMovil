@@ -33,7 +33,7 @@ export class CreateProviderComponent implements OnInit {
   getData() {
     if (this.id != '0') {
       this.providerService.getById(this.id).subscribe((c) => {
-        this.provider = c['result'];
+        this.provider = c;
       });
     }
   }
@@ -49,10 +49,8 @@ export class CreateProviderComponent implements OnInit {
         this.alert.success(this.translate.instant('successEdit'));
         if (this.exit) this.goBack();
       },
-      (error) => {
-        typeof error.error.message == 'string'
-        ? this.alert.error(error.error.message)
-        :this.alert.error(error.error.message.join('-'))
+      (error) => { this.alert.error(error.error)
+       
       }
     );
   }
@@ -77,11 +75,7 @@ export class CreateProviderComponent implements OnInit {
         this.provider = new Provider();
       },
       (error) => {
-        this.alert.error(
-          typeof error.error.message == 'string'
-            ? error.error.message
-            : error.error.message.join('-')
-        );
+        this.alert.error(error.error);
       }
     );
   }

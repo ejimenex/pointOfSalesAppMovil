@@ -17,22 +17,29 @@
     <ion-list>
       
       
-  
+      <ion-card *ngIf="!providers.lenght">
+        <ion-card-header>      
+        </ion-card-header>      
+        <ion-card-content>
+          Aun no hay registros, animese a crear el primero
+        </ion-card-content>      
+        <ion-button (click)="createNew()" fill="clear">Create New</ion-button>
+      </ion-card>
      
       <ion-item-sliding *ngFor="let item of providers">
-        <ion-popover trigger="{{item._id}}" [dismissOnSelect]="true">
+        <ion-popover trigger="{{item.id}}" [dismissOnSelect]="true">
           <ng-template>
             <ion-content>
               <ion-list>
-                <ion-item [button]="true" (click)="edit(item._id)" [detail]="false">{{'edit' | translate}}</ion-item>
-                <ion-item [button]="true" (click)="remove(item._id)" [detail]="false">{{'remove' | translate}}</ion-item>
+                <ion-item [button]="true" (click)="edit(item.id)" [detail]="false">{{'edit' | translate}}</ion-item>
+                <ion-item [button]="true" (click)="remove(item.id)" [detail]="false">{{'remove' | translate}}</ion-item>
                    
              
               </ion-list>
             </ion-content>
           </ng-template>
         </ion-popover>
-              <ion-card id="{{item._id}}" class="ion-activatable ripple-parent rounded-rectangle"> 
+              <ion-card id="{{item.id}}" class="ion-activatable ripple-parent rounded-rectangle"> 
         <ion-item style="color: #6190a2">
           <ion-label><b>{{'name' | translate}}:</b>{{ item.name }}</ion-label>
         </ion-item>

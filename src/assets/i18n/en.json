@@ -110,5 +110,6 @@
     "orderPrefix":"Order prefix", 
     "dop":"Dominican Peso",
     "usd":"Dollar",
-    "realBrazil":"Real Brazileno"
+    "realBrazil":"Real Brazileno",
+    "messageNotCreatedItem":"Aun no hay registros, vamos! Animese a crear el primero."
 }

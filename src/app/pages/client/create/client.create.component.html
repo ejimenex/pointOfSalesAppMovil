@@ -56,7 +56,7 @@
     </ion-item>
     <ion-item>
       <ion-label>{{'email' | translate}}:</ion-label>
-      <ion-input maxlength="50"  type='text' [(ngModel)]="client.clientEmail"></ion-input
+      <ion-input maxlength="50"  type='text' [(ngModel)]="client.email"></ion-input
       ><ion-icon name="mail"></ion-icon>
     </ion-item>
     <ion-item-divider  color="success">
@@ -78,7 +78,7 @@
     <ion-item>
       <ion-checkbox
         slot="start"
-        [(ngModel)]="client.notifyWhenInvoice"
+        [(ngModel)]="client.notifyWhenInvoiced"
         [indeterminate]="true"
       ></ion-checkbox>
       <ion-label style="color: #600478">{{'notifyWhenInvoice' | translate}}</ion-label>

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountModel } from 'src/app/model/account.model';
 import { AccountService } from 'src/app/services/account.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { CountriesService } from '../../../services/countries.service';
 
 @Component({
   selector: 'app-register',
@@ -11,16 +12,21 @@ import { AlertService } from 'src/app/services/alert.service';
 
 export class RegisterComponent implements OnInit {
     account:AccountModel=new AccountModel();
+    countries=[]
   constructor(
     private activatedRoute: ActivatedRoute,
+    private countrieService:CountriesService,
     private alert: AlertService,
     private routeService: Router,
     private accountService:AccountService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.countrieService.getCountries().subscribe(response=>{
+      this.countries=response as []
+    })
+  }
   add() {
-    this.account.isGoogleEmail=false;
     this.accountService.post(this.account).subscribe(
       (response) => {
         this.alert.success('Creado exitosamente');
@@ -29,7 +35,7 @@ export class RegisterComponent implements OnInit {
         this.routeService.navigate(['/login']);
       },
       (error) => {
-        this.alert.error(typeof(error.error.message)=='string'?error.error.message: error.error.message.join('-'));
+        this.alert.error( error.error);
       }
     );
   }

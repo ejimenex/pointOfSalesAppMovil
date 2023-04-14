@@ -105,5 +105,6 @@
     "isInventory":"É invencionável?",
     "usedUoM":"A unidade de medida que utilizo é",
     "minimalStock":"Estoque mínimo",
-    "rawMaterialName":"Nome da matéria prima"
+    "rawMaterialName":"Nome da matéria prima",
+    "messageNotCreatedItem":"Ainda sem registros, vamos lá! Seja encorajado a criar o primeiro."
 }

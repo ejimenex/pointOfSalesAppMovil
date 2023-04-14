@@ -10,9 +10,8 @@ import { TokenService } from './token.service';
 export class ClientService extends BaseService<Client, string> {
 
   constructor(_httpClient: HttpClient,tokenService:TokenService) {
-    super(_httpClient, environment.url + endpoints.client,tokenService);
+    super(_httpClient, environment.urlApi + endpoints.client,tokenService);
   }
 getPaged(pageNumber,filter,isBlackList){
-  const user=this.tokenService.getUserToken().email;
- return this._httpClient.get(environment.url+endpoints.client+`/GetPaginated/Data?pageNumber=${pageNumber}&filter=${filter}&email=${user}&isBlackList=${isBlackList}`,this.httpOptions)}
+ return this._httpClient.get(environment.urlApi+endpoints.client+`/GetPaged?page=${pageNumber}&filter=${filter}&isBlackList=${isBlackList}`,this.httpOptions)}
 }

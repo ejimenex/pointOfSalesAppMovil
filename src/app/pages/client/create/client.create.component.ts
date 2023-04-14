@@ -26,7 +26,7 @@ export class CreateClientComponent implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.client.isBlackList='No'
-    this.client.notifyWhenInvoice = false;
+    this.client.notifyWhenInvoiced = false;
     this.client.commentary = '';
     this.getData();
   }
@@ -34,7 +34,7 @@ export class CreateClientComponent implements OnInit {
   getData() {
     if (this.id != '0') {
       this.clientService.getById(this.id).subscribe((c) => {
-        this.client = c['existingClient'];
+        this.client = c;
       });
     }
   }
@@ -50,10 +50,7 @@ export class CreateClientComponent implements OnInit {
         this.alert.success(this.translate.instant('successEdit'));
         if (this.exit) this.goBack();
       },
-      (error) => {
-        typeof error.error.message == 'string'
-        ? error.error.message
-        : error.error.message.join('-')
+      (error) => { error.error
       }
     );
   }
@@ -74,6 +71,7 @@ export class CreateClientComponent implements OnInit {
     else this.add();
   }
   add() {
+    debugger
     this.clientService.post(this.client).subscribe(
       (response) => {
         this.alert.success(this.translate.instant('successCreation'));
@@ -81,11 +79,8 @@ export class CreateClientComponent implements OnInit {
         this.client = new Client();
       },
       (error) => {
-        this.alert.error(
-          typeof error.error.message == 'string'
-            ? error.error.message
-            : error.error.message.join('-')
-        );
+        this.alert.error( error.error)
+        
       }
     );
   }

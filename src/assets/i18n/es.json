@@ -112,5 +112,6 @@
     "realBrazil":"Real Brazileno",
     "sureBlackList":"Seguro desea poner en lista negra?",
     "successBlackList":"Cliene movido a la lista negra",
-    "blackListPost":"Enviar a la Lista Negra"
+    "blackListPost":"Enviar a la Lista Negra",
+    "messageNotCreatedItem":"No records yet, come on! Be encouraged to create the first one."
 }

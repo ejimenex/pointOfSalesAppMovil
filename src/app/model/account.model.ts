@@ -1,9 +1,9 @@
 export class AccountModel{
     name:string
     lastName:string
-    userEmail:string
+    Email:string
     password:string
     isGoogleEmail:boolean
     language:string
-    alias:string
+    userName:string
 }

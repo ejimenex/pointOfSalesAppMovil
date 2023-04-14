@@ -38,9 +38,9 @@ export class BaseService<TEntity, TKey> implements IService<TEntity, TKey> {
 
   post(entity: TEntity): Observable<Object> {
     const user=this.tokenService.getUserToken();
-    if(user){
-      entity['email']=user.email
-    }
+    // if(user){
+    //   entity['email']=user.email
+    // }
   
     return this._httpClient.post(this.baseUrl, entity, this.httpOptions);
   }
@@ -53,7 +53,7 @@ export class BaseService<TEntity, TKey> implements IService<TEntity, TKey> {
 
   put(id: TKey, entity: TEntity,): Observable<Object> {
     return this._httpClient
-      .put(this.baseUrl +'/'+ id, entity,this.httpOptions);
+      .put(this.baseUrl, entity,this.httpOptions);
   }
  
   delete(id: TKey): Observable<Object> {

@@ -3,12 +3,11 @@ export class Client{
     phone:string
     address:string
     city:string
-    clientEmail:string
     email:string;
     invoiceQuantity:number
     ordersQuantity:number
     commentary: string;
-    notifyWhenInvoice:boolean
+    notifyWhenInvoiced:boolean
     isBlackList:string
     reasonBlackList:string
 }

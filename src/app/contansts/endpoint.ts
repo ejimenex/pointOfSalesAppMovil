@@ -4,7 +4,7 @@ export const endpoints = {
   ingredient:'ingredient',
   service:'services',
   client:'client',
-  account:'account',
+  account:'userAccount',
   inventoryIngredient:'inventoryIngredient',
   order:'orders',
   invoice:'invoice',
