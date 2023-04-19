@@ -7,7 +7,6 @@ import { ClientRoutingModule } from './client.route';
 import { ListClientComponent } from './list/client.list.component';
 import { CreateClientComponent } from './create/client.create.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { LogoComponent } from '../components/logo/logo';
 
 @NgModule({
   imports: [
@@ -17,6 +16,6 @@ import { LogoComponent } from '../components/logo/logo';
     TranslateModule,
     ClientRoutingModule
   ],
-  declarations: [ListClientComponent,CreateClientComponent,LogoComponent]
+  declarations: [ListClientComponent,CreateClientComponent]
 })
 export class ClientModule {}
