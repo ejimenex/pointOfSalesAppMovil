@@ -26,6 +26,7 @@ export class ListProviderComponent implements OnInit {
   ngOnInit() {
     let user=this.toke.getUserToken();
    this.providers=[]
+   
    // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
   filterData(event){

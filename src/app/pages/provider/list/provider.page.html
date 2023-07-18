@@ -17,11 +17,11 @@
     <ion-list>
       
       
-      <ion-card *ngIf="!providers.lenght">
+      <ion-card *ngIf="!providers.length">
         <ion-card-header>      
         </ion-card-header>      
         <ion-card-content>
-          Aun no hay registros, animese a crear el primero
+          {{'messageNotCreatedItem' | translate}}
         </ion-card-content>      
         <ion-button (click)="createNew()" fill="clear">Create New</ion-button>
       </ion-card>

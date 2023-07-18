@@ -25,7 +25,6 @@ export class ParameterComponent implements OnInit {
   ngOnInit() {
     this.parameter.invoiceSecuence = 1;
     this.parameter.orderSecuence = 1;
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.currency = [
       { label: this.translate.instant('dop'), value: 'DOP' },
       { label: this.translate.instant('usd'), value: 'USD' },
@@ -35,9 +34,9 @@ export class ParameterComponent implements OnInit {
   }
 
   getData() {
-    this.parameterService.getById(this.id).subscribe((c) => {
-      if (c['data']) this.parameter = c['data'];
-      this.parameter.orderSecuence = 1;
+    this.parameterService.getOneEmail().subscribe(response => {
+      if(response)
+      this.parameter = response as any;
     });
   }
   goBack() {
@@ -53,15 +52,12 @@ export class ParameterComponent implements OnInit {
         if (this.exit) this.goBack();
       },
       (error) => {
-        typeof error.error.message == 'string'
-          ? this.alert.error(error.error.message)
-          : this.alert.error(error.error.message.join('-'));
+        this.alert.error(error.error)
       }
     );
   }
 
   addOrUpdate() {
-    this.parameter.email = this.id;
     if (
       !this.parameter.companyName ||
       !this.parameter.currency ||
@@ -69,20 +65,17 @@ export class ParameterComponent implements OnInit {
       !this.parameter.invoicePrefix
     )
       return this.alert.error(this.translate.instant('fillAllField'));
-    if (this.parameter['_id']) this.edit();
+    if (this.parameter['id']) this.edit();
     else this.add();
   }
   add() {
+    debugger
     this.parameterService.post(this.parameter).subscribe(
       (response) => {
         this.alert.success(this.translate.instant('successCreation'));
       },
       (error) => {
-        this.alert.error(
-          typeof error.error.message == 'string'
-            ? error.error.message
-            : error.error.message.join('-')
-        );
+        this.alert.error( error.error )
       }
     );
   }

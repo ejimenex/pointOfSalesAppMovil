@@ -5,7 +5,7 @@ import { RoleGuard } from 'src/app/services/role.guard';import { ParameterCompon
 const routes: Routes = [
 
   {
-    path: 'crud/:id',
+    path: '',
     component: ParameterComponent,
     canActivate: [RoleGuard],
   }

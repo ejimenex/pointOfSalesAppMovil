@@ -59,7 +59,6 @@ export class CreateProviderComponent implements OnInit {
   }
   addOrUpdate() {
     if (
-      !this.provider.address ||
       !this.provider.name ||
       !this.provider.phone
     )
@@ -70,7 +69,7 @@ export class CreateProviderComponent implements OnInit {
   add() {
     this.providerService.post(this.provider).subscribe(
       (response) => {
-        this.alert.success('successCreation');
+        this.alert.success(this.translate.instant('successCreation'));
         if (this.exit) this.goBack();
         this.provider = new Provider();
       },

@@ -9,7 +9,12 @@ import { TokenService } from './token.service';
 export class ParameterService extends BaseService<any, string> {
 
   constructor(_httpClient: HttpClient,tokenService:TokenService) {
-    super(_httpClient, environment.url + endpoints.parameter,tokenService);
+    super(_httpClient, environment.urlApi + endpoints.myData,tokenService);
   }
-
+ 
+  getOneEmail = () =>
+    this._httpClient.get(
+      environment.urlApi + endpoints.myData+ `/GetById`,
+      this.httpOptions
+    );
 }

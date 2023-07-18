@@ -113,5 +113,6 @@
     "sureBlackList":"Seguro desea poner en lista negra?",
     "successBlackList":"Cliene movido a la lista negra",
     "blackListPost":"Enviar a la Lista Negra",
-    "messageNotCreatedItem":"No records yet, come on! Be encouraged to create the first one."
+    "messageNotCreatedItem":"No records yet, come on! Be encouraged to create the first one.",
+    "documentNumber":"Número de documento"
 }

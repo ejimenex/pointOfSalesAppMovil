@@ -15,18 +15,15 @@
     </ion-header>
   
     <div id="container">
-      <ion-item>
-        <ion-checkbox
-          slot="start"
-          [(ngModel)]="exit"
-          [indeterminate]="true"
-        ></ion-checkbox>
-        <ion-label style="color: #600478">{{'exitToFinish' | translate}}</ion-label>
-      </ion-item>
+  
       <ion-item>
         <ion-label>{{'companyName' | translate}}:</ion-label>
-        <ion-input [(ngModel)]="parameter.companyName"></ion-input> </ion-item
+        <ion-input name="companyName" [(ngModel)]="parameter.companyName"></ion-input> </ion-item
       ><ion-item>
+       
+          <ion-label>{{'companyRegistrationNumber' | translate}}:</ion-label>
+          <ion-input name="companyRegistrationNumber" [(ngModel)]="parameter.companyRegistrationNumber"></ion-input> </ion-item
+        ><ion-item>
         <ion-label>{{'companyAddress' | translate}}:</ion-label>
         <ion-input  type='text' [(ngModel)]="parameter.companyAddress"></ion-input>
       </ion-item>
@@ -38,7 +35,7 @@
       
       <ion-item>
         <ion-label>{{'companyEmail' | translate}}:</ion-label>
-        <ion-input [(ngModel)]="parameter.companyEmail"></ion-input>
+        <ion-input type="text" [(ngModel)]="parameter.companyEmail"></ion-input>
        
       </ion-item>
   
@@ -72,6 +69,9 @@
         </ion-select>
              
        
+      </ion-item>
+     <ion-item>
+        <ion-textarea [(ngModel)]="parameter.invoiceTextFooter" label="{{'invoiceTextFooter' | translate}}"></ion-textarea>
       </ion-item>
     </div>
   

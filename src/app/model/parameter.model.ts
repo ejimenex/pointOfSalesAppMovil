@@ -1,11 +1,11 @@
 
 export class Parameter  {
-     email:string; 
+     companyRegistrationNumber:string
      invoicePrefix:string;   
     
      invoiceSecuence:number; 
      orderPrefix:string;   
-    
+    invoiceTextFooter:string
      orderSecuence:number; 
      companyName:string; 
      companyAddress: string;

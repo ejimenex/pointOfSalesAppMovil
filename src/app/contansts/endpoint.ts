@@ -10,7 +10,8 @@ export const endpoints = {
   invoice:'invoice',
   provider:'provider',
   bill:'bill',
-  parameter:'parameter'
+  parameter:'parameter',
+  myData:'myData'
 };
 
 

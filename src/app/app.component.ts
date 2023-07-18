@@ -10,7 +10,7 @@ import { TokenService } from './services/token.service';
 
 export class AppComponent {
   appPages =[
-    { title: this.translate.instant('myData'), url: `/parameter/crud/${this.token.getUserToken().email}`, icon: 'settings' },
+    { title: this.translate.instant('myData'), url: `/parameter`, icon: 'settings' },
     { title: this.translate.instant('ingredient'), url: '/ingredient', icon: 'fast-food' },
   { title: this.translate.instant('service'), url: '/services', icon: 'paper-plane' },
   { title: this.translate.instant('client'), url: '/client', icon: 'people' },

@@ -15,6 +15,7 @@ export class ListClientComponent implements OnInit {
   public clients: Client[];
   client: Client = new Client();
   pageNumber = 1;
+  pageData: any = {};
   filter = '';
   isModalOpen = false;
   isBlackList = 'No';
@@ -31,31 +32,45 @@ export class ListClientComponent implements OnInit {
     this.refresh();
   }
   ngOnInit() {
-    let user = this.toke.getUserToken();
+  this.clients=[]
 
     // this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
   openBlackList(isOpen: boolean, data: Client) {
     this.isModalOpen = isOpen;
     this.client = data;
- 
   }
-  setBlackList(){
+  setBlackList() {
     this.client.isBlackList = 'Yes';
-    this.alert.confirmation(()=>{
+    this.alert.confirmation(() => {
       this.clientService
-      .put(this.client['id'], this.client)
-      .subscribe((respon) => {
-        this.alert.success(this.translateService.instant('successBlackList'));
-        this.ionViewDidEnter()
-        this.isModalOpen=false
-      });
-    },this.translateService.instant('sureBlackList'))
-   
+        .put(this.client['id'], this.client)
+        .subscribe((respon) => {
+          this.alert.success(this.translateService.instant('successBlackList'));
+          this.ionViewDidEnter();
+          this.isModalOpen = false;
+        });
+    }, this.translateService.instant('sureBlackList'));
   }
   filterData(event) {
     this.filter = event.detail.value;
     this.refresh();
+  }
+  changePage(isNext) {
+    let limit = Math.ceil(this.pageData.count / 10);
+    if (isNext) {
+      
+      if(this.pageNumber>limit-1)
+      return;
+      ++this.pageNumber;
+      this.refresh()
+    }
+    else{
+      if(this.pageNumber == 1)
+      return;
+      --this.pageNumber;
+      this.refresh()
+    }
   }
   async refresh() {
     await this.clientService
@@ -63,6 +78,7 @@ export class ListClientComponent implements OnInit {
       .toPromise()
       .then(
         (response) => {
+          this.pageData = response;
           this.clients = response['data'];
         },
         (error) => {

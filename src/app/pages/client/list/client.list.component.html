@@ -37,12 +37,26 @@
     (ionChange)="filterData($event)"
     placeholder="Buscar"
   ></ion-searchbar>
-
-  <ion-list>
- 
-
-   
-    <ion-item-sliding *ngFor="let item of clients">
+  <ion-card *ngIf="!clients.length">
+    <ion-card-header>      
+    </ion-card-header>      
+    <ion-card-content>
+      {{'messageNotCreatedItem' | translate}}
+    </ion-card-content>      
+    <ion-button (click)="createNew()" fill="clear">Create New</ion-button>
+  </ion-card>
+  <div *ngIf="clients.length">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of clients" id="{{item.id}}">
+     
       <ion-popover trigger="{{item.id}}" [dismissOnSelect]="true">
         <ng-template>
           <ion-content>
@@ -56,33 +70,26 @@
           </ion-content>
         </ng-template>
       </ion-popover>
-      <ion-card id="{{item.id}}"> 
-      <ion-item style="color: #6190a2">
-        <ion-label>{{ item.name }}</ion-label>
-      </ion-item>
-      <ion-item style="color: #6190a2">
-          <ion-badge color="tertiary">{{item.ordersQuantity}} {{'leyPed' | translate}}</ion-badge>-
-        <ion-badge color="success">{{item.invoiceQuantity}} {{'leyInvoice' | translate}}</ion-badge>
-      </ion-item>
+    
+        <td> {{item.name}}</td>
       
+        <td>
+         
+            <ion-badge color="tertiary">{{item.ordersQuantity}} {{'leyPed' | translate}}</ion-badge>-
+          <ion-badge color="success">{{item.invoiceQuantity}} {{'leyInvoice' | translate}}</ion-badge>
+     
+        </td>
+     
+    </tr>
    
-      </ion-card>
-
-    </ion-item-sliding>
-  </ion-list>
-  <ion-grid fixed>
-  </ion-grid>
-  <!-- <ion-infinite-scroll position="top" threshold="15%" (ionInfinite)="loadData($event,'T')">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
-    </ion-infinite-scroll-content>
-</ion-infinite-scroll> -->
-  <ion-infinite-scroll threshold="100%" (ionInfinite)="loadData($event,'B')">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Cargando..."
-    >
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  </tbody>
+</table>
+<div class="container">
+  <button (click)="changePage(false)" class="btn btn-light"><<</button>
+  Page: {{pageData.page}}, Total: {{pageData.count}}
+  <button (click)="changePage(true)" class="btn btn-light">>></button>
+</div>
+</div>
 </ion-content>
 <ion-footer  collapse="fade">
   <ion-toolbar>

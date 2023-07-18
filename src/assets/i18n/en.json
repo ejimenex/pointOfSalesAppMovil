@@ -111,5 +111,6 @@
     "dop":"Dominican Peso",
     "usd":"Dollar",
     "realBrazil":"Real Brazileno",
-    "messageNotCreatedItem":"Aun no hay registros, vamos! Animese a crear el primero."
+    "messageNotCreatedItem":"Aun no hay registros, vamos! Animese a crear el primero.",
+    "documentNumber":"Document Number"
 }
